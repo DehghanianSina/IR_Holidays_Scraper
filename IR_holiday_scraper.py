@@ -80,3 +80,7 @@ try:
 
 except requests.RequestException as e:
     print(f"Error fetching data: {e}")
+
+
+# df_final.head()
+# df_final.to_csv("calendar_1403.csv", index=False)
