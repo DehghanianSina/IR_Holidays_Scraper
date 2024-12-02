@@ -1,2 +1,2 @@
-# IR_Holidays_Scraper
-Python scraper for Time.ir to generate a comprehensive Jalali-Gregorian calendar with holiday details. Includes web scraping, date conversion, and data merging using BeautifulSoup, jdatetime, and pandas.
+# IR_Holiday Calendar Scraper
+A Python project to scrape holiday data from the Time.ir website, process it into a structured format, and create a comprehensive calendar including both regular and holiday-specific details. The project uses BeautifulSoup for web scraping, jdatetime for date conversions, and pandas for data manipulation. It outputs a complete dataset with Jalali (Persian) and Gregorian dates, holiday markers, and descriptions. Perfect for building applications that require calendar data or holiday insights!
