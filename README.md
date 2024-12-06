@@ -30,8 +30,5 @@ cd ir_holiday_calendar_scraper
 pip install -r requirements.txt
 ```
 
-## Bonus Takeout
-Also, if you need a handy Jalali-Gregorian date converter, give 🤖 [@myDateConverterBot](https://t.me/myDateConverterBot) a try.
-
 ## Contributing
 Contributions and suggestions are welcome! If you like this project, don't forget to star 🌟 the repository.
