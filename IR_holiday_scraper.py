@@ -5,7 +5,7 @@ import jdatetime
 
 # تعریف سال مورد نظر
 from_year = 1401
-to_year = 1403
+to_year = 1403 # must be same as the from_year for only single year
 df_full_year = pd.DataFrame() 
 df_holidays = pd.DataFrame() 
 
