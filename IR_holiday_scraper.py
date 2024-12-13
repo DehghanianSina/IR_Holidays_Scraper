@@ -3,13 +3,11 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import jdatetime
 
-# تعریف سال مورد نظر
 from_year = 1401
 to_year = 1403 # must be same as the from_year for only single year
 df_full_year = pd.DataFrame() 
 df_holidays = pd.DataFrame() 
 
-# دیکشنری تبدیل نام ماه‌ها به شماره آن‌ها
 month_mapping = {
     "فروردین": "01",
     "اردیبهشت": "02",
@@ -25,22 +23,17 @@ month_mapping = {
     "اسفند": "12"
 }
 
-# URL مورد نظر
 for year in range(from_year, to_year+1): 
     for m in range(1,13):
         url = f"https://www.time.ir/fa/event/list/0/{year}/{m}"
         try:
-            # ارسال درخواست به صفحه وب
             response = requests.get(url)
-            response.raise_for_status()  # بررسی وضعیت پاسخ
+            response.raise_for_status()
 
-            # پردازش محتوای HTML
             soup = BeautifulSoup(response.text, 'html.parser')
 
-            # یافتن تمام المان‌های li با کلاس 'eventHoliday'
             event_holidays = soup.find_all('li', class_='eventHoliday')
 
-            # استخراج داده‌های روزهای تعطیل
             holiday_data = []
             for event in event_holidays:
                 date_span = event.find('span')
@@ -59,14 +52,12 @@ for year in range(from_year, to_year+1):
 
                 holiday_data.append({"miladi_date": miladi_date, "jalali_date": jalali_date, "is_holiday": 1, "holiday_title": title_text})
 
-            # df_holidays = pd.DataFrame(holiday_data)
             df_holidays = pd.concat([df_holidays, pd.DataFrame(holiday_data)], ignore_index=True)
 
         except requests.RequestException as e:
             print(f"Error fetching data: {e}")
 
 
-    # ایجاد دیتافریم کامل سال
     full_year_data = []
     for month_name, month_number in month_mapping.items():
         for day in range(1, 32):
@@ -78,7 +69,6 @@ for year in range(from_year, to_year+1):
             except ValueError:
                 continue
 
-    # df_full_year = pd.DataFrame(full_year_data)
     df_full_year = pd.concat([df_full_year, pd.DataFrame(full_year_data)], ignore_index=True)
 
 # جوین دو دیتافریم
